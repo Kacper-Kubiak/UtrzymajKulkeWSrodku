@@ -5,11 +5,14 @@ import android.content.pm.ActivityInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
         kulka = findViewById(R.id.kulka);
         Button obszar = findViewById(R.id.btn);
         TextView punkty = findViewById(R.id.punkty);
-        sensorActivity = new SensorActivity(obszar, punkty, kulka, new Handler());
+        TextView rekord = findViewById(R.id.rekord);
+        MediaPlayer ring = MediaPlayer.create(this, R.raw.ring);
+        sensorActivity = new SensorActivity(ring, obszar, punkty, rekord, kulka, new Handler());
         Thread t = new Thread(sensorActivity);
         t.start();
     }
